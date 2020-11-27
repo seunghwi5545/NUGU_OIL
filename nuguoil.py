@@ -205,6 +205,9 @@ class Getparams(Resource):
 
 
 class Getparams2(Resource):
+    global select
+    global oil_type
+    
     def post(self):
         data = request.get_json()
         response = {
