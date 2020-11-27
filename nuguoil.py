@@ -137,8 +137,8 @@ def make_response(result_list):
         "output": {
             "COUNT": "0",
             "STATION_INFORMATION": "",
-            "SELECT": "",
-            "OIL_TYPE": ""
+            #"SELECT": "",
+            #"OIL_TYPE": ""
         }
     }
     result_len = len(result_list)
@@ -162,8 +162,6 @@ def make_response(result_list):
             temp =temp.replace("[","")
             temp = temp.replace("'","")
         response["output"]["STATION_INFORMATION"] = temp
-    response["output"]["SELECT"] = select
-    response["output"]["OIL_TYPE"] = oil_type
 
     return response
 
@@ -177,28 +175,37 @@ class Getparams(Resource):
         global select
         global oil_type
 
-        select = data['action']['parameters']['SELECT']['value']
-        oil_type = data['action']['parameters']['OIL_TYPE']['value']
+        ans = ""
+        if data['action']['parameters'] == "SELECT":
+            select = data['action']['parameters']['SELECT']['value']
+            if select == "1번" or select == "2번":
+                ans = select
+        if data['action']['parameters'] == "OIL_TYPE":
+            oil_type = data['action']['parameters']['OIL_TYPE']['value']
+            if oil_type == "경유":
+                ans = "2번"
+            elif oil_type == "휘발유":
+                ans = "1번"
 
         a,b = location()
         a,b = trans(a,b)
-        ans = ""
-        if oil_type == "경유":
-            ans = "2번"
-        elif oil_type == "휘발유":
-            ans = "1번"
-        if select == "1번" or select == "2번":
-            ans = select
+        
         global oil_list
         oil_list = browse(a,b,ask_oil_type(ans))
 
         global data_num
         global title
         global cost
+
         title = []
         cost = []
         result = action(content())
         response = make_response(result)
+
+        if data['action']['parameters'] == "SELECT":
+            response["output"]["SELECT"] = select
+        if data['action']['parameters'] == "OIL_TYPE":
+            response["output"]["OIL_TYPE"] = oil_type
         print(response)
 
         return jsonify(response)
@@ -206,8 +213,9 @@ class Getparams(Resource):
 
 class Getparams2(Resource):
     def post(self):
-        data = request.get_json()
-        print(data)
+        global select
+        global oil_type
+
         response = {
         "version": "2.0",
         "resultCode": "OK",
@@ -216,6 +224,16 @@ class Getparams2(Resource):
             "STATION_INFORMATION": ""
              }
         }
+    
+        data = request.get_json()
+        if data['action']['parameters']== "SELECT":
+            select = data['action']['parameters']['SELECT']['value']
+            response["output"]["SELECT"] = select
+
+        if data['action']['parameters']== "OIL_TYPE":
+            oil_type = data['action']['parameters']['OIL_TYPE']['value']
+            response["output"]["OIL_TYPE"] = oil_type
+
         print(response)
         return response
 
