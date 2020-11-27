@@ -1,1 +1,1 @@
-web: gunicorn nuguoil.py:app
+web: gunicorn nuguoil:app --bind 0.0.0.0:${PORT}
