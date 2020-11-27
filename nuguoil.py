@@ -172,6 +172,7 @@ api = Api(app)
 class Getparams(Resource):
     def post(self):
         data = request.get_json()
+        print(data)
         global select
         global oil_type
 
@@ -215,7 +216,7 @@ class Getparams2(Resource):
     def post(self):
         global select
         global oil_type
-
+        
         response = {
         "version": "2.0",
         "resultCode": "OK",
@@ -226,6 +227,7 @@ class Getparams2(Resource):
         }
     
         data = request.get_json()
+        print(data)
         if data['action']['parameters']== "SELECT":
             select = data['action']['parameters']['SELECT']['value']
             response["output"]["SELECT"] = select
