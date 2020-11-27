@@ -196,5 +196,4 @@ class Getparams(Resource):
 api.add_resource(Getparams,'/answer.lowprice.diesel','/answer.lowprice.gasoline','/answer.lowprice.diesel.0','/answer.lowprice.diesel.1','/answer.lowprice.gasoline.0','/answer.lowprice.gasoline.1','/answer.lowprice.select.diesel','/answer.lowprice.select.diesel0','/answer.lowprice.select.diesel1','/answer.lowprice.select.gasoline','/answer.lowprice.select.gasoline0','/answer.lowprice.select.gasoline1')
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000")
-    app.run(host="0.0.0.0", port=port)
+    app.run()
