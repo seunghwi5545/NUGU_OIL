@@ -208,6 +208,7 @@ class Getparams2(Resource):
     
     def post(self):
         data = request.get_json()
+        print(data)
         select2 = data['action']['parameters']['SELECT']['value']
         oil_type2 = data['action']['parameters']['OIL_TYPE']['value']
 
