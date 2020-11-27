@@ -128,12 +128,17 @@ def action(c):
         return arr
     
 def make_response(result_list):
+    global select
+    global oil_type
+
     response = {
         "version": "2.0",
         "resultCode": "OK",
         "output": {
             "COUNT": "0",
-            "STATION_INFORMATION": ""
+            "STATION_INFORMATION": "",
+            "SELECT": "",
+            "OIL_TYPE": ""
         }
     }
     result_len = len(result_list)
@@ -157,6 +162,9 @@ def make_response(result_list):
             temp =temp.replace("[","")
             temp = temp.replace("'","")
         response["output"]["STATION_INFORMATION"] = temp
+    response["output"]["SELECT"] = select
+    response["output"]["OIL_TYPE"] = oil_type
+
     return response
 
 
@@ -166,6 +174,8 @@ api = Api(app)
 class Getparams(Resource):
     def post(self):
         data = request.get_json()
+        global select
+        global oil_type
 
         select = data['action']['parameters']['SELECT']['value']
         oil_type = data['action']['parameters']['OIL_TYPE']['value']
@@ -193,6 +203,7 @@ class Getparams(Resource):
 
         return jsonify(response)
 
+"""
 class Getparams2(Resource):
     def post(self):
         data = request.get_json()
@@ -200,15 +211,15 @@ class Getparams2(Resource):
         "version": "2.0",
         "resultCode": "OK",
         "output": {
-            "COUNT": "",
+            "COUNT": "NULL",
             "STATION_INFORMATION": ""
              }
         }
         print(response)
         return response
-
+"""
 api.add_resource(Getparams,'/answer.lowprice.diesel','/answer.lowprice.gasoline','/answer.lowprice.diesel.0','/answer.lowprice.diesel.1','/answer.lowprice.gasoline.0','/answer.lowprice.gasoline.1','/answer.lowprice.select.diesel','/answer.lowprice.select.diesel0','/answer.lowprice.select.diesel1','/answer.lowprice.select.gasoline','/answer.lowprice.select.gasoline0','/answer.lowprice.select.gasoline1')
-api.add_resource(Getparams2,'/answer.lowprice','/')
+#api.add_resource(Getparams2,'/answer.lowprice','/')
 
 if __name__ == "__main__":
     app.run()
