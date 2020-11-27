@@ -207,11 +207,9 @@ class Getparams(Resource):
 class Getparams2(Resource):
     
     def post(self):
-        global select
-        global oil_type
         data = request.get_json()
-        select = data['action']['parameters']['SELECT']['value']
-        oil_type = data['action']['parameters']['OIL_TYPE']['value']
+        select2 = data['action']['parameters']['SELECT']['value']
+        oil_type2 = data['action']['parameters']['OIL_TYPE']['value']
 
         response = {
         "version": "2.0",
@@ -224,8 +222,8 @@ class Getparams2(Resource):
              }
         }
 
-        response["output"]["SELECT"] = select
-        response["output"]["OIL_TYPE"] = oil_type
+        response["output"]["SELECT"] = select2
+        response["output"]["OIL_TYPE"] = oil_type2
         print(response)
         return response
 
