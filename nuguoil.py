@@ -200,7 +200,7 @@ class Getparams2(Resource):
         "version": "2.0",
         "resultCode": "OK",
         "output": {
-            "COUNT": "0",
+            "COUNT": "",
             "STATION_INFORMATION": ""
              }
         }
