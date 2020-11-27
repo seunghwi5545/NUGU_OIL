@@ -203,7 +203,7 @@ class Getparams(Resource):
 
         return jsonify(response)
 
-"""
+
 class Getparams2(Resource):
     def post(self):
         data = request.get_json()
@@ -212,14 +212,21 @@ class Getparams2(Resource):
         "resultCode": "OK",
         "output": {
             "COUNT": "NULL",
-            "STATION_INFORMATION": ""
+            "STATION_INFORMATION": "",
+            "SELECT": "",
+            "OIL_TYPE": ""
              }
         }
+
+        response["output"]["SELECT"] = select
+        response["output"]["OIL_TYPE"] = oil_type
         print(response)
         return response
-"""
+
+api.add_resource(Getparams2,'/answer.lowprice','/')
+
 api.add_resource(Getparams,'/answer.lowprice.diesel','/answer.lowprice.gasoline','/answer.lowprice.diesel.0','/answer.lowprice.diesel.1','/answer.lowprice.gasoline.0','/answer.lowprice.gasoline.1','/answer.lowprice.select.diesel','/answer.lowprice.select.diesel0','/answer.lowprice.select.diesel1','/answer.lowprice.select.gasoline','/answer.lowprice.select.gasoline0','/answer.lowprice.select.gasoline1')
-#api.add_resource(Getparams2,'/answer.lowprice','/')
+
 
 if __name__ == "__main__":
     app.run()
