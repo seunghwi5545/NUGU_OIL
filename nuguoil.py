@@ -191,9 +191,9 @@ class Getparams(Resource):
                 ans = "1번"
                 print("이게 찍히냐 안찍히냐 ~" + ans)
 
-        #a,b = location()
-        #print(a,b)
-        a,b=37.585876,127.143135
+        a,b = location()
+        print(a,b)
+        #a,b=37.585876,127.143135
         a,b = trans(a,b)
 
         global oil_list
