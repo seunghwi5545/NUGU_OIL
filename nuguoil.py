@@ -181,18 +181,20 @@ class Getparams(Resource):
             select = data['action']['parameters']['SELECT']['value']
             if select == "1번" or select == "2번":
                 ans = select
+                print(oil_type)
         if data['action']['parameters'] == "OIL_TYPE":
             oil_type = data['action']['parameters']['OIL_TYPE']['value']
             if oil_type == "경유":
                 ans = "2번"
+                print(oil_type)
             elif oil_type == "휘발유":
                 ans = "1번"
+                print(oil_type)
 
         a,b = location()
         print(a,b)
         a,b = trans(a,b)
         
-        print(oil_type)
         global oil_list
         oil_list = browse(a,b,ask_oil_type(ans))
         print(oil_list)
