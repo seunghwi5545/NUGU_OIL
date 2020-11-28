@@ -177,12 +177,12 @@ class Getparams(Resource):
         global oil_type
 
         ans = ""
-        if data['action']['parameters'] == "SELECT":
+        if 'SELECT' in data['action']['parameters'].keys():
             select = data['action']['parameters']['SELECT']['value']
             if select == "1번" or select == "2번":
                 ans = select
                 print("이게 찍히냐 안찍히냐 ~" + oil_type)
-        if data['action']['parameters'] == "OIL_TYPE":
+        if 'OIL_TYPE' in data['action']['parameters'].keys():
             oil_type = data['action']['parameters']['OIL_TYPE']['value']
             if oil_type == "경유":
                 ans = "2번"
