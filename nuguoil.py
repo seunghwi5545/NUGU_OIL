@@ -189,9 +189,10 @@ class Getparams(Resource):
                 ans = "1번"
 
         a,b = location()
-        a,b = trans(a,b)
         print(a,b)
+        a,b = trans(a,b)
         
+        print(oil_type)
         global oil_list
         oil_list = browse(a,b,ask_oil_type(ans))
         print(oil_list)
@@ -213,7 +214,7 @@ class Getparams(Resource):
 
         return jsonify(response)
 
-
+"""
 class Getparams2(Resource):
     def post(self):
         global select
@@ -240,10 +241,10 @@ class Getparams2(Resource):
 
         print(response)
         return response
-
+api.add_resource(Getparams2,'/answer.lowprice','/','/answer.lowprice.select')
+"""
 api.add_resource(Getparams,'/answer.lowprice.diesel','/answer.lowprice.gasoline','/answer.lowprice.diesel.0','/answer.lowprice.diesel.1','/answer.lowprice.gasoline.0','/answer.lowprice.gasoline.1','/answer.lowprice.select.diesel','/answer.lowprice.select.diesel0','/answer.lowprice.select.diesel1','/answer.lowprice.select.gasoline','/answer.lowprice.select.gasoline0','/answer.lowprice.select.gasoline1')
 
-api.add_resource(Getparams2,'/answer.lowprice','/','/answer.lowprice.select')
 
 if __name__ == "__main__":
     app.run()
