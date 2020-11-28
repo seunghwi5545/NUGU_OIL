@@ -17,6 +17,12 @@ def location(): #find users location
     url = 'https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDkx6muQn1Jz-y6hLOcTPVdYAhklm6WJQo'
     data = {
         'considerIp': True,
+        'homeMobileCountryCode': 450,
+        'homeMobileNetworkCode': 5,
+        'radioType':'gsm',
+        'carrier': "SKTelecom",
+        "wifiAccessPoints":[{'macAddress':'40:DC:9D:06:EC:CA'}]
+        
     }
     result = requests.post(url, data)
     a=result.json()
