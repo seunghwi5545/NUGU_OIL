@@ -190,9 +190,11 @@ class Getparams(Resource):
 
         a,b = location()
         a,b = trans(a,b)
+        print(a,b)
         
         global oil_list
         oil_list = browse(a,b,ask_oil_type(ans))
+        print(oil_list)
 
         global data_num
         global title
