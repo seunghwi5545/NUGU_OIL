@@ -181,15 +181,15 @@ class Getparams(Resource):
             select = data['action']['parameters']['SELECT']['value']
             if select == "1번" or select == "2번":
                 ans = select
-                print("이게 찍히냐 안찍히냐 ~" + oil_type)
+                print("이게 찍히냐 안찍히냐 ~" + ans)
         if 'OIL_TYPE' in data['action']['parameters'].keys():
             oil_type = data['action']['parameters']['OIL_TYPE']['value']
             if oil_type == "경유":
                 ans = "2번"
-                print("이게 찍히냐 안찍히냐 ~" + oil_type)
+                print("이게 찍히냐 안찍히냐 ~" + ans)
             elif oil_type == "휘발유":
                 ans = "1번"
-                print("이게 찍히냐 안찍히냐 ~" + oil_type)
+                print("이게 찍히냐 안찍히냐 ~" + ans)
 
         #a,b = location()
         #print(a,b)
