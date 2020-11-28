@@ -181,20 +181,20 @@ class Getparams(Resource):
             select = data['action']['parameters']['SELECT']['value']
             if select == "1번" or select == "2번":
                 ans = select
-                print(oil_type)
+                print("이게 찍히냐 안찍히냐 ~" + oil_type)
         if data['action']['parameters'] == "OIL_TYPE":
             oil_type = data['action']['parameters']['OIL_TYPE']['value']
             if oil_type == "경유":
                 ans = "2번"
-                print(oil_type)
+                print("이게 찍히냐 안찍히냐 ~" + oil_type)
             elif oil_type == "휘발유":
                 ans = "1번"
-                print(oil_type)
+                print("이게 찍히냐 안찍히냐 ~" + oil_type)
 
         #a,b = location()
         #print(a,b)
-        #a,b = trans(a,b)
         a,b=37.585876,127.143135
+        a,b = trans(a,b)
 
         global oil_list
         oil_list = browse(a,b,ask_oil_type(ans))
@@ -248,7 +248,7 @@ class Getparams2(Resource):
 api.add_resource(Getparams2,'/answer.lowprice','/','/answer.lowprice.select')
 """
 
-api.add_resource(Getparams,'/answer.lowprice','/answer.lowprice.diesel','/answer.lowprice.gasoline','/answer.lowprice.diesel.0','/answer.lowprice.diesel.1','/answer.lowprice.gasoline.0','/answer.lowprice.gasoline.1','/answer.lowprice.select.diesel','/answer.lowprice.select.diesel0','/answer.lowprice.select.diesel1','/answer.lowprice.select.gasoline','/answer.lowprice.select.gasoline0','/answer.lowprice.select.gasoline1')
+api.add_resource(Getparams,'/answer.lowprice.diesel','/answer.lowprice.gasoline','/answer.lowprice.diesel.0','/answer.lowprice.diesel.1','/answer.lowprice.gasoline.0','/answer.lowprice.gasoline.1','/answer.lowprice.select.diesel','/answer.lowprice.select.diesel0','/answer.lowprice.select.diesel1','/answer.lowprice.select.gasoline','/answer.lowprice.select.gasoline0','/answer.lowprice.select.gasoline1')
 
 
 if __name__ == "__main__":
