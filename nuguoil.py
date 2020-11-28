@@ -21,7 +21,7 @@ def location(): #find users location
         #'homeMobileNetworkCode': 5,
         #'radioType':'gsm',
         #'carrier': "SKTelecom",
-        "wifiAccessPoints":[{'macAddress':'40:DC:9D:06:EC:CA'}]
+        #"wifiAccessPoints":[{'macAddress':'40:DC:9D:06:EC:CA'}]
     }
     result = requests.post(url, data)
     a=result.json()
@@ -170,7 +170,6 @@ def make_response(result_list):
 
     return response
 
-
 app = Flask(__name__)
 api = Api(app)
 
@@ -222,6 +221,13 @@ class Getparams(Resource):
 
         return jsonify(response)
 
+api.add_resource(Getparams,'/answer.lowprice','/answer.lowprice.diesel','/answer.lowprice.gasoline','/answer.lowprice.diesel.0','/answer.lowprice.diesel.1','/answer.lowprice.gasoline.0','/answer.lowprice.gasoline.1','/answer.lowprice.select.diesel','/answer.lowprice.select.diesel0','/answer.lowprice.select.diesel1','/answer.lowprice.select.gasoline','/answer.lowprice.select.gasoline0','/answer.lowprice.select.gasoline1')
+
+if __name__ == "__main__":
+    app.run()
+
+
+
 """
 class Getparams2(Resource):
     def post(self):
@@ -252,9 +258,3 @@ class Getparams2(Resource):
 
 api.add_resource(Getparams2,'/answer.lowprice','/','/answer.lowprice.select')
 """
-
-api.add_resource(Getparams,'/answer.lowprice','/answer.lowprice.diesel','/answer.lowprice.gasoline','/answer.lowprice.diesel.0','/answer.lowprice.diesel.1','/answer.lowprice.gasoline.0','/answer.lowprice.gasoline.1','/answer.lowprice.select.diesel','/answer.lowprice.select.diesel0','/answer.lowprice.select.diesel1','/answer.lowprice.select.gasoline','/answer.lowprice.select.gasoline0','/answer.lowprice.select.gasoline1')
-
-
-if __name__ == "__main__":
-    app.run()
