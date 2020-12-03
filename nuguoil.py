@@ -57,7 +57,7 @@ def browse(x_point,y_point,oil_type):
         "out" : "json",
         "x" : x_point,
         "y" : y_point,
-        "radius" : "1000",
+        "radius" : "5000",
         "prodcd" : oil_type ,
         "sort" : "1"
         }
@@ -185,19 +185,17 @@ class Getparams(Resource):
             select = data['action']['parameters']['SELECT']['value']
             if select == "1번" or select == "2번":
                 ans = select
-                print("이게 찍히냐 안찍히냐 ~" + ans)
         if 'OIL_TYPE' in data['action']['parameters'].keys():
             oil_type = data['action']['parameters']['OIL_TYPE']['value']
             if oil_type == "경유":
                 ans = "2번"
-                print("이게 찍히냐 안찍히냐 ~" + ans)
             elif oil_type == "휘발유":
                 ans = "1번"
-                print("이게 찍히냐 안찍히냐 ~" + ans)
 
-        a,b = location()
-        print(a,b)
-        #a,b=37.585876,127.143135
+
+        #a,b = location()
+        #print(a,b)
+        a,b=37.585876,127.143135
         a,b = trans(a,b)
 
         global oil_list
@@ -213,9 +211,9 @@ class Getparams(Resource):
         result = action(content())
         response = make_response(result)
 
-        if data['action']['parameters'] == "SELECT":
+        if 'SELECT' in data['action']['parameters'].keys():
             response["output"]["SELECT"] = select
-        if data['action']['parameters'] == "OIL_TYPE":
+        if 'OIL_TYPE' in data['action']['parameters'].keys():
             response["output"]["OIL_TYPE"] = oil_type
         print(response)
 
