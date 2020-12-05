@@ -70,9 +70,6 @@ def content():
     global title
     global cost
     data_num = len(oil_list["RESULT"]["OIL"]) #주유소 개수 확인
-    
-    #if (data_num == 0): #주유소 상호명 -> title
-        #return None
 
     if (data_num == 1):
         for i in range(0, 1):
@@ -223,36 +220,3 @@ api.add_resource(Getparams,'/answer.lowprice','/answer.lowprice.diesel','/answer
 
 if __name__ == "__main__":
     app.run()
-
-
-
-"""
-class Getparams2(Resource):
-    def post(self):
-        global select
-        global oil_type
-        
-        response = {
-        "version": "2.0",
-        "resultCode": "OK",
-        "output": {
-            "COUNT": "NULL",
-            "STATION_INFORMATION": ""
-             }
-        }
-    
-        data = request.get_json()
-        print(data)
-        if data['action']['parameters']== "SELECT":
-            select = data['action']['parameters']['SELECT']['value']
-            response["output"]["SELECT"] = select
-
-        if data['action']['parameters']== "OIL_TYPE":
-            oil_type = data['action']['parameters']['OIL_TYPE']['value']
-            response["output"]["OIL_TYPE"] = oil_type
-
-        print(response)
-        return response
-
-api.add_resource(Getparams2,'/answer.lowprice','/','/answer.lowprice.select')
-"""
